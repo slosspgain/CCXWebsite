@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'/>
+    <title>Awesome!</title>
+    <style>
+        
+        .wrapper2{
+            height: 100vh;
+            perspective: 1px;
+            overflow-x: hidden;
+        }
+        .wrapper2::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* General styling, not necessarily related to parallax effect  */
+        .section {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 80vh;
+            font-size: 40px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        /* Different background colors for demo purpose */
+        .static-one {
+            background-color: #feceab;
+        }
+
+        .static-two {
+            background-color: #aacfcf;
+        }
+
+        .static-three {
+            background-color: #c06c84;
+        }
+
+        .parallax::after {
+            /* Position the pseudo-element to fill the parent */
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            
+            /* Scale the image to full */
+            background-size: cover;
+            
+            /* Move the element back then scale the element, it helps to appears more slowly */
+            transform: translateZ(-1px) scale(1.7);
+            
+            /* Set the parallax section before the other elements. */
+            z-index: -1;
+        }
+
+        /* Different background images */
+        .parallax-one::after {
+            background-image: url(https://source.unsplash.com/vs6a4EHj_Ro/1600x900);
+        }
+
+        .parallax-two::after {
+            background-image: url(https://source.unsplash.com/P86-JPbDnPY/1600x900);
+        }
+        .header{
+            position: fixed;
+            top: 0px;
+            z-index:2;
+            display: flex;
+            justify-content:space-around;
+            vertical-align: center;
+            
+            padding:10;
+            background-color: #feceab;
+            width:100%;
+        }
+        .subitems{
+            position:absolute;
+            
+        }
+        .view{
+            display:hidden;
+        }
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS Parallax</title>
+</head>
+
+<body>
+    <div class="wrapper" >
+        <div class="header" id="myHeader">
+            <p>hello dawg</p>
+            <h1>hey</h1>
+        </div>
+        
+        <div class="wrapper2" id="mywrapper">
+            <section class="section static static-one">Static</section>
+            <section class="section parallax parallax-one"></section>
+            <section class="section static static-two" id = "myelement">Static</section>
+            <section class="section parallax parallax-two">hello</section>
+            <section class="section static static-three">Static</section>
+        </div>
+    </div>
+    
+    <script>
+        var lastScrollTop = 0;
+        var header = document.getElementById("myHeader");
+        var wrapper = document.getElementById("mywrapper");
+        var myelement = document.getElementById("myelement");
+        mywrapper.addEventListener("scroll", function(){ 
+            var st = myelement.scrollY;
+           
+           
+           
+            console.log(st+""+lastScrollTop);
+            if (st < lastScrollTop){
+                header.COMMENT_NODE="hello";
+                header.style.backgroundColor="red";
+            } else {
+                
+                header.COMMENT_NODE="hello";
+                header.style.backgroundColor="orange";
+            }
+            lastScrollTop = st; // For Mobile or negative scrolling
+        }, false);
+    </script>
+
+    
+</body>
+</html>
